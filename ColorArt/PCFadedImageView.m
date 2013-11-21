@@ -27,15 +27,15 @@
 	NSSize imageSize = [self.image size];
     NSRect bounds = self.bounds;
 	NSRect imageRect = NSMakeRect(bounds.size.width - imageSize.width, bounds.size.height - imageSize.height, imageSize.width, imageSize.height);
-
+    
 	[self.image drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
-
+    
 	// lazy way to get fade color
 	NSColor *backgroundColor = [[self window] backgroundColor];
-		
-	NSGradient *gradient = [[NSGradient alloc] initWithColorsAndLocations:backgroundColor, 0.0, backgroundColor, .01, [backgroundColor colorWithAlphaComponent:0.05], 1.0, nil];
-
-	[gradient drawInRect:imageRect angle:0.0];
+    
+	NSGradient *gradient = [[NSGradient alloc] initWithColorsAndLocations:backgroundColor, 1-0.1875, backgroundColor, .01, [backgroundColor colorWithAlphaComponent:0.05], 1.0, nil];
+    
+	[gradient drawInRect:imageRect angle:90.0];
 }
 
 

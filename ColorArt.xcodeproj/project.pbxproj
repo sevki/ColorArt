@@ -14,6 +14,8 @@
 		18DFE52A16697F1500792C2E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 18DFE52816697F1500792C2E /* Credits.rtf */; };
 		18DFE52D16697F1500792C2E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DFE52C16697F1500792C2E /* AppDelegate.m */; };
 		18DFE53016697F1600792C2E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DFE52E16697F1600792C2E /* MainMenu.xib */; };
+		437C3300183E1B5F00760723 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437C32FF183E1B5F00760723 /* WebKit.framework */; };
+		437C3304183E44BC00760723 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 437C3303183E44BC00760723 /* Images.xcassets */; };
 		93FE707B1677DE9300BE484D /* SLColorArt.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FE707A1677DE9300BE484D /* SLColorArt.m */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +35,8 @@
 		18DFE52B16697F1500792C2E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18DFE52C16697F1500792C2E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		18DFE52F16697F1600792C2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		437C32FF183E1B5F00760723 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		437C3303183E44BC00760723 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		93FE70791677DE9300BE484D /* SLColorArt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLColorArt.h; sourceTree = "<group>"; };
 		93FE707A1677DE9300BE484D /* SLColorArt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLColorArt.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -42,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				437C3300183E1B5F00760723 /* WebKit.framework in Frameworks */,
 				18DFE51A16697F1500792C2E /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,6 +74,7 @@
 		18DFE51816697F1500792C2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				437C32FF183E1B5F00760723 /* WebKit.framework */,
 				18DFE51916697F1500792C2E /* Cocoa.framework */,
 				18DFE51B16697F1500792C2E /* Other Frameworks */,
 			);
@@ -96,6 +102,7 @@
 				18DFE52016697F1500792C2E /* Supporting Files */,
 				93FE70791677DE9300BE484D /* SLColorArt.h */,
 				93FE707A1677DE9300BE484D /* SLColorArt.m */,
+				437C3303183E44BC00760723 /* Images.xcassets */,
 			);
 			path = ColorArt;
 			sourceTree = "<group>";
@@ -164,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18DFE52416697F1500792C2E /* InfoPlist.strings in Resources */,
+				437C3304183E44BC00760723 /* Images.xcassets in Resources */,
 				18DFE52A16697F1500792C2E /* Credits.rtf in Resources */,
 				18DFE53016697F1600792C2E /* MainMenu.xib in Resources */,
 			);
@@ -267,6 +275,7 @@
 		18DFE53416697F1600792C2E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -280,6 +289,7 @@
 		18DFE53516697F1600792C2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

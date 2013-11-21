@@ -18,7 +18,25 @@
 #import "SLColorArt.h"
 
 @implementation AppDelegate
-
+NSString *css;
+NSString *body;
+NSString *headers;
+NSString *links;
+NSString *linksHover;
+NSString *texts;
+NSString *html;
+-(NSString *)getRGBString:(NSColor*)color
+{
+    return [NSString stringWithFormat:
+            @"rgb(%.0f,%.0f,%.0f)",
+            color.redComponent*255,
+            color.greenComponent*255,
+            color.blueComponent*255];
+}
+-(void)setColor:(NSColor*)color toField:(NSTextField*)field {
+    field.textColor = color;
+    [field setStringValue:[NSString stringWithFormat:@"colour %@",[self getRGBString:color]]];
+}
 - (IBAction)chooseImage:(id)sender
 {
 	NSOpenPanel* openPanel = [NSOpenPanel openPanel];
@@ -40,13 +58,75 @@
 //                [_progress setHidden:NO];
                 [_progress startAnimation:nil];
                 [[NSOperationQueue new] addOperationWithBlock:^{
-                    SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:image scaledSize:NSMakeSize(320., 320.)];
+                    SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:image scaledSize:NSMakeSize(800., 800.)];
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                         self.imageView.image = colorArt.scaledImage;
                         self.window.backgroundColor = colorArt.backgroundColor;
-                        self.primaryField.textColor = colorArt.primaryColor;
-                        self.secondaryField.textColor = colorArt.secondaryColor;
-                        self.detailField.textColor = colorArt.detailColor;
+                        
+                        body =[NSString stringWithFormat:
+                               @"body {\r\n\tbackground-color:%@;\r\n}",
+                               [self getRGBString:colorArt.backgroundColor]];
+                        
+                        
+                        [self setColor:colorArt.primaryColor toField:self.primaryField];
+                        headers =[NSString stringWithFormat:
+                                  @"h1, h2, h3, h4 {\r\n\tcolor:%@;\r\n}",
+                                  [self getRGBString:colorArt.primaryColor]];
+                        
+                        [self setColor:colorArt.secondaryColor toField:self.secondaryField];
+                        links =[NSString stringWithFormat:
+                                @"a {\r\n\tcolor:rgb(%.0f,%.0f,%.0f);\r\n}",
+                                colorArt.secondaryColor.redComponent*255,
+                                colorArt.secondaryColor.greenComponent*255,
+                                colorArt.secondaryColor.blueComponent*255];
+                        
+                        linksHover =[NSString stringWithFormat:
+                                @"a:hover {\r\n\tcolor:rgb(%.0f,%.0f,%.0f);\r\n\ttext-decoration:underline;\r\n}",
+                                colorArt.secondaryColor.redComponent*255,
+                                colorArt.secondaryColor.greenComponent*255,
+                                colorArt.secondaryColor.blueComponent*255];
+
+                        
+                        [self setColor:colorArt.detailColor toField:self.detailField];
+                        texts =[NSString stringWithFormat:
+                                @"body {\r\n\tcolor:rgb(%.0f,%.0f,%.0f);\r\n}",
+                                colorArt.detailColor.redComponent*255,
+                                colorArt.detailColor.greenComponent*255,
+                                colorArt.detailColor.blueComponent*255];
+
+                        
+                        self.cssField.textColor = colorArt.detailColor;
+                    
+                      
+                        css =[NSString stringWithFormat:
+                                @"%@\r\n%@\r\n%@\r\n%@\r\n%@", body,headers,links, linksHover, texts];
+                        
+                        html =[NSString stringWithFormat:@"\
+                               <!DOCTYPE html>\
+                               <html>\
+                               <head>\
+                               <title></title>\
+                               <script src=\"https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js\"></script>\
+                               <link rel=\"stylesheet\" type=\"text/css\" href=\"http://jmblog.github.io/color-themes-for-google-code-prettify/css/themes/github.css\">\
+                               </head>\
+                               <body onload=\"prettyPrint()\">\
+                               <style type=\"text/css\">\
+                               %@\
+                               pre {\
+                                background-color:white;\
+                               }\
+                               </style>\
+                               <h1>This is a header</h1>\
+                               This is some Text <a href=\"#\">This is a Link</a>. Building on top of Panic's ColorArt too can now quickly prototype CSS files.\
+                               <h2>And the css that made this possible</h2>\
+                               <pre class=\"prettyprint lang-css\">%@</pre>\
+                               </body>\
+                               </html>", css,css];
+                        [[self.previewPage mainFrame] loadHTMLString:html baseURL:nil];
+                        [self.previewPage setHidden:NO];
+                        [self.copierButton setHidden:NO];
+                        [[self.chooserButton cell] setBackgroundColor:[NSColor redColor]];
+                        [[self.copierButton cell] setBackgroundColor:[NSColor redColor]];
 //                        [_progress setHidden:YES];
                         [_progress stopAnimation:nil];
                     }];
@@ -56,5 +136,11 @@
 	}];
 }
 
+- (IBAction)copyPressed:(id)sender {
+    NSPasteboard *pb = [NSPasteboard generalPasteboard];
+    NSArray *types = [NSArray     arrayWithObjects:NSStringPboardType, nil];
+    [pb declareTypes:types owner:self];
+    [pb setString: css forType:NSStringPboardType];
+}
 @end
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="13A598" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="3338"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -650,14 +651,20 @@
         <window title="ColorArt" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="999" y="641" width="557" height="320"/>
+            <rect key="contentRect" x="999" y="641" width="800" height="600"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <value key="minSize" type="size" width="800" height="600"/>
             <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="557" height="320"/>
+                <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView id="542" customClass="PCFadedImageView">
+                        <rect key="frame" x="0.0" y="450" width="800" height="150"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" id="543"/>
+                    </imageView>
                     <button verticalHuggingPriority="750" id="536">
-                        <rect key="frame" x="49" y="34" width="87" height="25"/>
+                        <rect key="frame" x="586" y="565" width="87" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="roundTextured" title="Choose" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="537">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -667,13 +674,8 @@
                             <action selector="chooseImage:" target="494" id="580"/>
                         </connections>
                     </button>
-                    <imageView id="542" customClass="PCFadedImageView">
-                        <rect key="frame" x="237" y="0.0" width="320" height="320"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" id="543"/>
-                    </imageView>
                     <textField verticalHuggingPriority="750" id="552">
-                        <rect key="frame" x="17" y="283" width="176" height="17"/>
+                        <rect key="frame" x="10" y="570" width="176" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Primary Color" id="553">
                             <font key="font" metaFont="systemBold"/>
@@ -682,7 +684,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="558">
-                        <rect key="frame" x="17" y="263" width="176" height="17"/>
+                        <rect key="frame" x="10" y="550" width="176" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Secondary Color" id="560">
                             <font key="font" metaFont="system"/>
@@ -691,7 +693,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="566">
-                        <rect key="frame" x="17" y="243" width="176" height="17"/>
+                        <rect key="frame" x="10" y="530" width="176" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Detail Color" id="567">
                             <font key="font" metaFont="smallSystem"/>
@@ -700,16 +702,46 @@
                         </textFieldCell>
                     </textField>
                     <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="IzV-BG-yQp">
-                        <rect key="frame" x="144" y="39" width="16" height="16"/>
+                        <rect key="frame" x="681" y="570" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </progressIndicator>
+                    <button hidden="YES" verticalHuggingPriority="750" id="uQI-fQ-xKc">
+                        <rect key="frame" x="12" y="456" width="107" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="Copy CSS" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="orA-JS-0fI">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="copyPressed:" target="494" id="NmW-Pd-lrk"/>
+                        </connections>
+                    </button>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="jxQ-aJ-stf">
+                        <rect key="frame" x="10" y="75" width="692" height="103"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" placeholderString=" " id="gGY-un-eCJ">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <webView hidden="YES" id="de9-5D-E3w">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="450"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12"/>
+                    </webView>
                 </subviews>
             </view>
         </window>
         <customObject id="494" customClass="AppDelegate">
             <connections>
+                <outlet property="chooserButton" destination="536" id="dJy-2b-Nzy"/>
+                <outlet property="copierButton" destination="uQI-fQ-xKc" id="Tnq-rx-I05"/>
+                <outlet property="copyButton" destination="uQI-fQ-xKc" id="q52-UK-eYb"/>
+                <outlet property="cssField" destination="jxQ-aJ-stf" id="RbY-fr-zIg"/>
                 <outlet property="detailField" destination="566" id="716"/>
                 <outlet property="imageView" destination="542" id="576"/>
+                <outlet property="previewPage" destination="de9-5D-E3w" id="biE-WX-Vf6"/>
                 <outlet property="primaryField" destination="552" id="577"/>
                 <outlet property="progress" destination="IzV-BG-yQp" id="XbH-1w-AB1"/>
                 <outlet property="secondary1Field" destination="566" id="579"/>
